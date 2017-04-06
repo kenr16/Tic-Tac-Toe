@@ -83,8 +83,27 @@ $(document).ready(function() {
   $(".btn-primary").click(function() {
     do
       var aiSquare = Math.floor((Math.random() * 9) + 1);
-    while (player1.arrayOfMarks.includes(aiSquare) || player2.arrayOfMarks.includes(aiSquare))
-    alert(aiSquare);
+    while ((player1.arrayOfMarks.includes(aiSquare) || player2.arrayOfMarks.includes(aiSquare))
+    && ((player1.arrayOfMarks.length + player2.arrayOfMarks.length) < 9))
+
+
+    if (player1.active == 1) {
+      var marker = player1.clickFunction(aiSquare);
+      if (player1.checkVictory() === true) {
+        alert("Victory for Player 1");
+        location.reload();
+      }
+      player1.active = 0;
+    } else {
+       var marker = player2.clickFunction(aiSquare);
+       if (player2.checkVictory() === true) {
+         alert("Victory for Player 2");
+         location.reload();
+       }
+       player1.active = 1;
+    }
+    var takeThisSquare = document.getElementById(aiSquare);
+    $(takeThisSquare).text(marker);
 
   });
 
@@ -98,12 +117,14 @@ $(document).ready(function() {
         var marker = player1.clickFunction(clickedSquare);
         if (player1.checkVictory() === true) {
           alert("Victory for Player 1");
+          $(".congrats").toggleClass("hidden");
         }
         player1.active = 0;
       } else {
          var marker = player2.clickFunction(clickedSquare);
          if (player2.checkVictory() === true) {
            alert("Victory for Player 2");
+           $(".congrats").toggleClass("hidden");
          }
          player1.active = 1;
       }

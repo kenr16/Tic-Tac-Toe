@@ -13,17 +13,27 @@
   </head>
   <body>
     <div class="container">
+      <div class="congrats hidden">
+        <img src="fireworks.jpg"/>
+      </div>
       <div class="row">
         <div class="col-sm-11 header">
           <strong>Tic-Tac-Toe</strong>
         </div>
       </div>
-      <div class="row players">
-        <h2 class="player">Player 1's Turn</h2>
-        <h2 class="player hidden">Player 2's Turn</h2>
-        <button class="btn btn-danger">Reset</button>
-        <button class="btn btn-primary">AI Select</button>
+      <div class="row">
+        <div class="row players">
+          <h2 class="player">Player 1's Turn</h2>
+          <h2 class="player hidden">Player 2's Turn</h2>
+        </div>
       </div>
+      <div class="row">
+        <div class="col-xs-11">
+          <button class="btn btn-danger">Reset</button>
+          <button class="btn btn-primary">Let the AI Select a Square</button>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-sm-4 square square1" id="1">
 
@@ -57,7 +67,6 @@
 
         </div>
       </div>
-
 
       <div class="row">
         <div class="col-sm-11 legal">

@@ -75,6 +75,12 @@
   -webkit-animation: blink-animation .01s steps(5, start) infinite;
 }
 
+.congrats {
+  position: absolute;
+  z-index: 1;
+  left: 200px;
+}
+
 @keyframes blink-animation {
   to {
     visibility: hidden;

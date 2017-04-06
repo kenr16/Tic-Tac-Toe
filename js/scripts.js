@@ -76,11 +76,11 @@ $(document).ready(function() {
 
 
 
-  $(".btn-danger").click(function() {
+  $(".btn-reset").click(function() {
     location.reload();
   });
 
-  $(".btn-primary").click(function() {
+  $(".btn-ai").click(function() {
     do
       var aiSquare = Math.floor((Math.random() * 9) + 1);
     while ((player1.arrayOfMarks.includes(aiSquare) || player2.arrayOfMarks.includes(aiSquare))

@@ -5,8 +5,28 @@
   height: 250px;
   text-align: center;
   font-size: 215px;
-  color: #0086b3;
-  font-family: 'Varela Round', sans-serif;
+  color: #b3ecff;
+  /*font-family: 'Varela Round', sans-serif;*/
+  font-family: 'Press Start 2P', cursive;
+
+}
+
+#background img {
+  opacity: 0.70;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
+}
+
+.btn-theme {
+  background-color: #dddddd;
+  border-width: 1px;
+  border-color: black;
+  color: red;
+  z-index: 2;
 
 }
 
@@ -16,11 +36,13 @@
 }
 
 .header {
+  text-align: center;
   width: 85%;
   background-color: #80ffd4;
-  font-size: 130px;
+  font-size: 75px;
   color: ##00e600;
   margin-bottom: 50px;
+  font-family: 'Press Start 2P', cursive;
 
 }
 

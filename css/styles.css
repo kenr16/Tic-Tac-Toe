@@ -10,6 +10,11 @@
 
 }
 
+.square:hover {
+  border-color: #80dfff;
+  background-color: #e6fff7;
+}
+
 .header {
   width: 85%;
   background-color: #80ffd4;
@@ -59,4 +64,14 @@
 }
 .container {
   padding:150px;
+}
+
+.player {
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+}
+
+
+.hidden {
+  display: none;
 }

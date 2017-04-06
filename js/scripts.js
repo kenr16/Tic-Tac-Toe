@@ -1,132 +1,98 @@
-$(document).ready(function() {
+(function(){
 
-  //event.preventDefault();
+// Player, Space, Board, and Game
 
-  function Square(square1, square2, square3, square4, square5, square6, square7, square8, square8, square9, square10) {
-    this.square1 = square1;
-    this.square2 = square2;
-    this.square3 = square3;
-    this.square4 = square4;
-    this.square5 = square5;
-    this.square6 = square6;
-    this.square7 = square7;
-    this.square8 = square8;
-    this.square9 = square9;
-    this.square10 = square10}
+function Player(marker, name, active){
+  this.marker = marker;
+  this.name = name;
+  this.active = active;
+  this.arrayOfMarks = [];
+}
 
-  var squareLog = new Square(
-    " ",
-    " ",
-    " ",
-    " ",
-    " ",
-    " ",
-    " ",
-    " ",
-    " ",
-    " ");
-
-
-  var changeSymbol = function(inputSymbol) {
-    if (inputSymbol === " ") {
-      inputSymbol = "X";
-    } else if (inputSymbol === "X") {
-      inputSymbol = "O";
-    } else if (inputSymbol === "O") {
-      inputSymbol = " ";
-    }
-    return inputSymbol
+Player.prototype.checkVictory = function() {
+  //123
+  if (this.arrayOfMarks.includes("1") && this.arrayOfMarks.includes("2") && this.arrayOfMarks.includes("3"))  {
+    alert("Victory " + this.name +"!");
+  //456
+  } else if (this.arrayOfMarks.includes("4") && this.arrayOfMarks.includes("5") && this.arrayOfMarks.includes("6")){
+    alert("Victory " + this.name + " !");
+  //789
+  } else if (this.arrayOfMarks.includes("7") && this.arrayOfMarks.includes("8") && this.arrayOfMarks.includes("9")){
+    alert("Victory " + this.name + " !");
+  //147
+  } else if (this.arrayOfMarks.includes("1") && this.arrayOfMarks.includes("4") && this.arrayOfMarks.includes("7")){
+    alert("Victory " + this.name + " !");
+  //258
+  } else if (this.arrayOfMarks.includes("2") && this.arrayOfMarks.includes("5") && this.arrayOfMarks.includes("8")){
+    alert("Victory " + this.name + " !");
+    //369
+  } else if (this.arrayOfMarks.includes("3") && this.arrayOfMarks.includes("6") && this.arrayOfMarks.includes("9")){
+    alert("Victory " + this.name + " !");
+    //159
+  } else if (this.arrayOfMarks.includes("1") && this.arrayOfMarks.includes("5") && this.arrayOfMarks.includes("9")){
+    alert("Victory " + this.name + " !");
+    //357
+  } else if (this.arrayOfMarks.includes("3") && this.arrayOfMarks.includes("5") && this.arrayOfMarks.includes("7")){
+    alert("Victory " + this.name + " !");
+  } else {
+    console.log("Next player's turn!");
   }
+}
+
+Player.prototype.clickFunction = function(clickedSquare) {
+  this.arrayOfMarks.push(clickedSquare);
+  this.checkVictory();
+  return this.marker;
+}
+
+
+function Space(state, coordinate, owner){
+  this.state = state;
+  this.coordinate = coordinate;
+  this.owner = owner;
+}
+
+// function Board(spaces){
+// }
+
+// Board.prototype.isThreeInARow = function () {
+// }
+
+// Board.prototype.findSpaceByCoord = function () {
+// }
+
+// function Game(players, board){
+// }
+
+// Game.prototype.methodName = function () {
+// }
+
+
+// **********************************************************
+// User Interface Logic:
+// **********************************************************
+$(document).ready(function() {
+  var player1 = new Player("X", "Player 1", 1); // This establishes the players.
+  var player2 = new Player("O", "Player 2", 0);
 
 
 
-  $(".square1").click(function() {
-    var inputSymbol = changeSymbol(squareLog.square1);
-    squareLog.square1 = inputSymbol;
-    $(".square1").text(inputSymbol);
+  $(".square").click(function() {
+    var clickedSquare = $(this).attr("id");
+    if (player1.arrayOfMarks.includes(clickedSquare) || player2.arrayOfMarks.includes(clickedSquare)) {
+      return;
+    }
+    if (player1.active == 1) {
+      var marker = player1.clickFunction(clickedSquare);
+      player1.active = 0;
+    } else {
+       var marker = player2.clickFunction(clickedSquare);
+       player1.active = 1;
+    }
+    $(this).text(marker);
   });
-
-  $(".square2").click(function() {
-    var inputSymbol = changeSymbol(squareLog.square2);
-    squareLog.square2 = inputSymbol;
-    $(".square2").text(inputSymbol);
-  });
-
-  $(".square3").click(function() {
-    var inputSymbol = changeSymbol(squareLog.square3);
-    squareLog.square3 = inputSymbol;
-    $(".square3").text(inputSymbol);
-  });
-
-  $(".square4").click(function() {
-    var inputSymbol = changeSymbol(squareLog.square4);
-    squareLog.square4 = inputSymbol;
-    $(".square4").text(inputSymbol);
-  });
-
-  $(".square5").click(function() {
-    var inputSymbol = changeSymbol(squareLog.square5);
-    squareLog.square5 = inputSymbol;
-    $(".square5").text(inputSymbol);
-  });
-
-  $(".square6").click(function() {
-    var inputSymbol = changeSymbol(squareLog.square6);
-    squareLog.square6 = inputSymbol;
-    $(".square6").text(inputSymbol);
-  });
-
-  $(".square7").click(function() {
-    var inputSymbol = changeSymbol(squareLog.square7);
-    squareLog.square7 = inputSymbol;
-    $(".square7").text(inputSymbol);
-  });
-
-  $(".square8").click(function() {
-    var inputSymbol = changeSymbol(squareLog.square8);
-    squareLog.square8 = inputSymbol;
-    $(".square8").text(inputSymbol);
-  });
-
-  $(".square9").click(function() {
-    var inputSymbol = changeSymbol(squareLog.square9);
-    squareLog.square9 = inputSymbol;
-    $(".square9").text(inputSymbol);
-  });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });
+
+})();

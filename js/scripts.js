@@ -1,5 +1,3 @@
-(function(){
-
 // Player, Space, Board, and Game
 
 function Player(marker, name, active){
@@ -11,37 +9,37 @@ function Player(marker, name, active){
 
 Player.prototype.checkVictory = function() {
   //123
-  if (this.arrayOfMarks.includes("1") && this.arrayOfMarks.includes("2") && this.arrayOfMarks.includes("3"))  {
-    alert("Victory " + this.name +"!");
+  if (this.arrayOfMarks.includes(1) && this.arrayOfMarks.includes(2) && this.arrayOfMarks.includes(3))  {
+    return true;
   //456
-  } else if (this.arrayOfMarks.includes("4") && this.arrayOfMarks.includes("5") && this.arrayOfMarks.includes("6")){
-    alert("Victory " + this.name + " !");
+  } else if (this.arrayOfMarks.includes(4) && this.arrayOfMarks.includes(5) && this.arrayOfMarks.includes(6)){
+    return true;
   //789
-  } else if (this.arrayOfMarks.includes("7") && this.arrayOfMarks.includes("8") && this.arrayOfMarks.includes("9")){
-    alert("Victory " + this.name + " !");
+  } else if (this.arrayOfMarks.includes(7) && this.arrayOfMarks.includes(8) && this.arrayOfMarks.includes(9)){
+    return true;
   //147
-  } else if (this.arrayOfMarks.includes("1") && this.arrayOfMarks.includes("4") && this.arrayOfMarks.includes("7")){
-    alert("Victory " + this.name + " !");
+  } else if (this.arrayOfMarks.includes(1) && this.arrayOfMarks.includes(4) && this.arrayOfMarks.includes(7)){
+    return true;
   //258
-  } else if (this.arrayOfMarks.includes("2") && this.arrayOfMarks.includes("5") && this.arrayOfMarks.includes("8")){
-    alert("Victory " + this.name + " !");
+  } else if (this.arrayOfMarks.includes(2) && this.arrayOfMarks.includes(5) && this.arrayOfMarks.includes(8)){
+    return true;
     //369
-  } else if (this.arrayOfMarks.includes("3") && this.arrayOfMarks.includes("6") && this.arrayOfMarks.includes("9")){
-    alert("Victory " + this.name + " !");
+  } else if (this.arrayOfMarks.includes(3) && this.arrayOfMarks.includes(6) && this.arrayOfMarks.includes(9)){
+    return true;
     //159
-  } else if (this.arrayOfMarks.includes("1") && this.arrayOfMarks.includes("5") && this.arrayOfMarks.includes("9")){
-    alert("Victory " + this.name + " !");
+  } else if (this.arrayOfMarks.includes(1) && this.arrayOfMarks.includes(5) && this.arrayOfMarks.includes(9)){
+    return true;
     //357
-  } else if (this.arrayOfMarks.includes("3") && this.arrayOfMarks.includes("5") && this.arrayOfMarks.includes("7")){
-    alert("Victory " + this.name + " !");
+  } else if (this.arrayOfMarks.includes(3) && this.arrayOfMarks.includes(5) && this.arrayOfMarks.includes(7)){
+    return true;
   } else {
     console.log("Next player's turn!");
   }
 }
 
 Player.prototype.clickFunction = function(clickedSquare) {
-  this.arrayOfMarks.push(clickedSquare);
-  this.checkVictory();
+  var toPush = parseInt(clickedSquare);
+  this.arrayOfMarks.push(toPush);
   return this.marker;
 }
 
@@ -77,22 +75,41 @@ $(document).ready(function() {
 
 
 
+
+  $(".btn-danger").click(function() {
+    location.reload();
+  });
+
+  $(".btn-primary").click(function() {
+    do
+      var aiSquare = Math.floor((Math.random() * 9) + 1);
+    while (player1.arrayOfMarks.includes(aiSquare) || player2.arrayOfMarks.includes(aiSquare))
+    alert(aiSquare);
+
+  });
+
+
+
   $(".square").click(function() {
-    var clickedSquare = $(this).attr("id");
-    if (player1.arrayOfMarks.includes(clickedSquare) || player2.arrayOfMarks.includes(clickedSquare)) {
-      return;
-    }
-    if (player1.active == 1) {
-      var marker = player1.clickFunction(clickedSquare);
-      player1.active = 0;
-    } else {
-       var marker = player2.clickFunction(clickedSquare);
-       player1.active = 1;
+    var clickedSquare = parseInt($(this).attr("id"));
+    $(".player").toggleClass("hidden");
+    if (!(player1.arrayOfMarks.includes(clickedSquare) || player2.arrayOfMarks.includes(clickedSquare))) {
+      if (player1.active == 1) {
+        var marker = player1.clickFunction(clickedSquare);
+        if (player1.checkVictory() === true) {
+          alert("Victory for Player 1");
+        }
+        player1.active = 0;
+      } else {
+         var marker = player2.clickFunction(clickedSquare);
+         if (player2.checkVictory() === true) {
+           alert("Victory for Player 2");
+         }
+         player1.active = 1;
+      }
     }
     $(this).text(marker);
   });
 
 
 });
-
-})();

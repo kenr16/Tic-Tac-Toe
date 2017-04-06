@@ -67,8 +67,23 @@
 }
 
 .player {
+  color: #1affff;
   text-align: center;
   font-family: 'Press Start 2P', cursive;
+  text-shadow: 2px 2px #ff66d9;
+  animation: blink-animation .01s steps(5, start) infinite;
+  -webkit-animation: blink-animation .01s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
 }
 
 
